@@ -1,0 +1,10 @@
+package idrisspringboot
+
+pkgs = contrib, idrisjvmffi
+
+modules = Mmhelloworld.IdrisSpringBoot.Boot.Autoconfigure,
+          Mmhelloworld.IdrisSpringBoot.Context.Annotation,
+          Mmhelloworld.IdrisSpringBoot.Http.Converter.Json,
+          Mmhelloworld.IdrisSpringBoot.Web.Bind.Annotation,
+          Mmhelloworld.IdrisSpringBoot.Boot,
+          Mmhelloworld.IdrisSpringBoot.Context

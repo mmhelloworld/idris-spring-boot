@@ -1,0 +1,31 @@
+apply plugin: 'java'
+
+def ipkg = fileTree(dir: "${projectDir}/src/main/idris", include: "*.ipkg").singleFile.getName()
+
+task idrisBuild(type: Exec) {
+    workingDir "${projectDir}/src/main/idris"
+
+    executable "idris"
+    args = ["--install", ipkg]
+
+    inputs.files(fileTree("${projectDir}/src/main/idris"))
+    outputs.files(fileTree(dir: "${projectDir}/src/main/idris", include: "**/*.ibc"))
+}
+
+
+task idrisClean(type: Exec) {
+    workingDir "${projectDir}/src/main/idris"
+
+    executable "idris"
+    args = ["--clean", ipkg]
+
+    inputs.files(fileTree(dir: "${projectDir}/src/main/idris", include: "**/*.ibc"))
+}
+
+
+clean.dependsOn('idrisClean')
+build.dependsOn('idrisBuild')
+
+repositories {
+    mavenCentral()
+}
